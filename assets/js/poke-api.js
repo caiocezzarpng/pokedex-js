@@ -1,26 +1,25 @@
 const pokeApi = {};
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
-    const pokemon = new Pokemon()
-    pokemon.number = pokeDetail.id
-    pokemon.name = pokeDetail.name
+  const pokemon = new Pokemon();
+  pokemon.number = pokeDetail.id;
+  pokemon.name = pokeDetail.name;
 
-    const types = pokeDetail.types.map(typeSlot => typeSlot.type.name)
-    const [type] = types
+  const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
+  const [type] = types;
 
-    pokemon.types = types
-    pokemon.type = type
+  pokemon.types = types;
+  pokemon.type = type;
 
-    pokemon.photo = pokeDetail.sprites.other.home.front_default
+  pokemon.photo = pokeDetail.sprites.other.home.front_default;
 
-    return pokemon
-                                                            
+  return pokemon;
 }
 
 pokeApi.getPokemonDetail = (pokemon) => {
   return fetch(pokemon.url)
     .then((response) => response.json())
-    .then(convertPokeApiDetailToPokemon)
+    .then(convertPokeApiDetailToPokemon);
 };
 
 pokeApi.getPokemons = (offset, limit) => {
